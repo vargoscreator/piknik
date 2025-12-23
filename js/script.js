@@ -204,30 +204,45 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initAdvantagesAnimation();
 
-    const chooseTitle = document.querySelector('.choose__title');
-    if (chooseTitle) {
-        chooseTitle.innerHTML = chooseTitle.textContent.trim().split('').map(char => 
-            `<span style="display:inline-block; min-width: 0.3em;">${char === ' ' ? '&nbsp;' : char}</span>`
-        ).join('');
-        
+    const chooseSections = document.querySelectorAll('.choose');
+
+    chooseSections.forEach((section) => {
+        const titleSpans = section.querySelectorAll('.choose__title span');
+        titleSpans.forEach(span => {
+            const text = span.textContent.trim();
+            span.innerHTML = text.split('').map(char => 
+                `<span class="letter" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
+            ).join('');
+        });
         const chooseTl = gsap.timeline({
             scrollTrigger: {
-                trigger: ".choose",
+                trigger: section,
                 start: "top 80%",
                 toggleActions: "play none none none"
             }
         });
-
-        chooseTl.from(chooseTitle.querySelectorAll('span'), {
-            opacity: 0,
-            y: 20,
-            rotateX: -90,
-            stagger: 0.05,
-            duration: 0.6
-        })
-        .from(".choose__slider", { y: 100, opacity: 0, duration: 1.2 }, "-=0.3")
-        .from(".choose__slide-btn", { y: 30, opacity: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.6");
-    }
+        const allLetters = section.querySelectorAll('.letter');
+        chooseTl
+            .from(allLetters, {
+                opacity: 0,
+                y: 20,
+                rotateX: -90,
+                stagger: 0.03,
+                duration: 0.6,
+                ease: "power2.out"
+            })
+            .from(section.querySelector(".choose__slider"), { 
+                y: 60,
+                opacity: 0, 
+                duration: 1 
+            }, "-=0.4")
+            .from(section.querySelector(".choose__slide-btn"), { 
+                y: 30, 
+                opacity: 0, 
+                duration: 0.8, 
+                ease: "back.out(1.7)" 
+            }, "-=0.6");
+    });
 
     document.querySelectorAll('.choose__slide').forEach(slide => {
         slide.addEventListener('mousemove', (e) => {
