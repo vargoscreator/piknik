@@ -496,7 +496,7 @@ mark{
     gap: 2.604vw;
     min-height: 5.885vw;
     width: max-content;
-    animation: scroll 40s linear infinite;
+    animation: scroll 30s linear infinite;
 }
 .hero__banner-descr{
     color: #FFF;
@@ -689,6 +689,9 @@ mark{
     padding: 6.563vw 0 2.083vw;
     position: relative;
     z-index: 10;
+}
+.choose__title > span{
+    display: inline-block;
 }
 .choose__content{
     width: 100%;
@@ -1059,10 +1062,12 @@ mark{
     line-height: 100%; /* 1.25vw */
     transition: all .2s ease;
 }
-.footer__menu{
+.footer__menu {
     display: flex;
     flex-direction: column;
     gap: 1.875vw;
+    width: 100%;
+    max-width: 18vw;
 }
 .footer__menu li a{
     display: flex;
