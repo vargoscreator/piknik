@@ -1,21 +1,32 @@
 
-const langWrapper = document.querySelector('.header__lang');
-const langSelected = document.querySelector('.header__lang-selected');
-const langLinks = document.querySelectorAll('.header__lang-select');
-langSelected.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langWrapper.classList.toggle('active');
-});
-langLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        langWrapper.classList.remove('active');
+const langBlocks = document.querySelectorAll('.header__lang');
+
+langBlocks.forEach(langWrapper => {
+    const langSelected = langWrapper.querySelector('.header__lang-selected');
+    const langLinks = langWrapper.querySelectorAll('.header__lang-select');
+
+    langSelected.addEventListener('click', e => {
+        e.stopPropagation();
+        langBlocks.forEach(block => {
+            if (block !== langWrapper) {
+                block.classList.remove('active');
+            }
+        });
+
+        langWrapper.classList.toggle('active');
+    });
+
+    langLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            langWrapper.classList.remove('active');
+        });
     });
 });
-document.addEventListener('click', (e) => {
-    if (!langWrapper.contains(e.target)) {
-        langWrapper.classList.remove('active');
-    }
+
+document.addEventListener('click', () => {
+    langBlocks.forEach(block => block.classList.remove('active'));
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger);
@@ -244,15 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, "-=0.6");
     });
 
-    document.querySelectorAll('.choose__slide').forEach(slide => {
-        slide.addEventListener('mousemove', (e) => {
-            const img = slide.querySelector('.choose__slide-image > img');
-            const rect = slide.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            gsap.to(img, { x: x * 20, y: y * 20, duration: 1 });
-        });
-    });
 
     ScrollTrigger.create({
         trigger: ".wherebuy",
@@ -323,11 +325,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.querySelector(".choose__slider")) {
         new Swiper(".choose__slider", {
-            loop: true,
+            loop: false,
             spaceBetween: 85,
             slidesPerView: 1,
             speed: 800,
-            autoplay: { delay: 2500, disableOnInteraction: false },
+            // autoplay: { delay: 2500, disableOnInteraction: false },
         });
     }
 
@@ -355,3 +357,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(window.scrollX, window.scrollY + 1);
         window.scrollTo(window.scrollX, window.scrollY - 1);
     }
+
+
+
+const openBtn = document.querySelector('.header__button');
+const closeBtn = document.querySelector('.header__button-close');
+const content = document.querySelector('.header__content');
+openBtn.addEventListener('click', () => {
+  content.classList.add('active');
+});
+closeBtn.addEventListener('click', () => {
+  content.classList.remove('active');
+});
