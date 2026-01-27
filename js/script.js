@@ -327,11 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.querySelector(".choose__slider")) {
         new Swiper(".choose__slider", {
-            loop: false,
+            loop: true,
             spaceBetween: 85,
             slidesPerView: 1,
             speed: 800,
             autoplay: { delay: 2500, disableOnInteraction: false },
+            breakpoints: {
+                768: {
+                    spaceBetween: 250
+                },
+            }
         });
     }
     if (document.querySelector(".sliderProd__slider")) {
@@ -728,18 +733,102 @@ stepsBottomTl
 
 
 $(document).ready(function () {
-    $('.faq__item-descr').hide();
+    $('.faq__item-descr').not(':first').hide();
+    $('.faq__item').first().addClass('is-active');
     $('.faq__item-title').on('click', function () {
         const $item = $(this).closest('.faq__item');
         const $descr = $item.find('.faq__item-descr');
         if ($item.hasClass('is-active')) {
             $descr.slideUp(300);
             $item.removeClass('is-active');
-            return;
+        } else {
+            $('.faq__item.is-active .faq__item-descr').slideUp(300);
+            $('.faq__item.is-active').removeClass('is-active');
+            $descr.slideDown(300);
+            $item.addClass('is-active');
         }
-        $('.faq__item.is-active .faq__item-descr').slideUp(300);
-        $('.faq__item').removeClass('is-active');
-        $descr.slideDown(300);
-        $item.addClass('is-active');
     });
+});
+const partnerTl = gsap.timeline();
+partnerTl
+    .from(".partner__title", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    })
+    .from(".partner__image", {
+        scale: 1.1,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out"
+    }, "-=0.5");
+
+gsap.from(".whystart__top p", {
+    scrollTrigger: {
+        trigger: ".whystart__top",
+        start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 0.8
+});
+
+gsap.from(".whystart__item", {
+    scrollTrigger: {
+        trigger: ".whystart__content",
+        start: "top 70%",
+    },
+    y: 40,
+    opacity: 0,
+    stagger: 0.15,
+    duration: 0.8,
+    ease: "back.out(1.7)"
+});
+
+gsap.from(".whystart__info", {
+    scrollTrigger: {
+        trigger: ".whystart__info",
+        start: "top 90%",
+    },
+    scale: 0.95,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out"
+});
+
+const locationsTl = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".locations__inner",
+        start: "top 75%",
+    }
+});
+
+locationsTl
+    .from(".locations__title", {
+        x: -50,
+        opacity: 0,
+        duration: 0.8
+    })
+    .from(".locations__item", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.6
+    })
+    .from(".locations__item-opened", {
+        opacity: 0,
+        y: 20,
+        duration: 0.5
+    });
+
+gsap.to(".partner__image img", {
+    scrollTrigger: {
+        trigger: ".partner",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    },
+    y: 100
 });
