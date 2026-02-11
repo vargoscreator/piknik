@@ -832,3 +832,19 @@ gsap.to(".partner__image img", {
     },
     y: 100
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const weightButtons = document.querySelectorAll('.product__weight-descr');
+    const productImages = document.querySelectorAll('.product__image img:not(.product__image-icons img)');
+    weightButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            document.querySelector('.product__weight-descr.active').classList.remove('active');
+            button.classList.add('active');
+            document.querySelector('.product__image img.active').classList.remove('active');
+            if (productImages[index]) {
+                productImages[index].classList.add('active');
+            }
+        });
+    });
+});
