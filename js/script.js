@@ -324,21 +324,48 @@ document.addEventListener('DOMContentLoaded', () => {
         y: -50,
         ease: "none"
     });
-
     if (document.querySelector(".choose__slider")) {
-        new Swiper(".choose__slider", {
-            loop: true,
-            spaceBetween: 85,
-            slidesPerView: 1,
-            speed: 800,
-            autoplay: { delay: 2500, disableOnInteraction: false },
-            breakpoints: {
-                768: {
-                    spaceBetween: 250
+    const swiper = new Swiper(".choose__slider", {
+        loop: true,
+        spaceBetween: 85,
+        slidesPerView: 1,
+        speed: 800,
+        autoplay: { 
+            delay: 2500, 
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true // Это штатная настройка Swiper для остановки при наведении
+        },
+        breakpoints: {
+            768: { spaceBetween: 250 },
+        }
+    });
+
+    // Запускаем анимацию для ВСЕХ слайдов сразу
+    const allSlides = document.querySelectorAll('.choose__slide');
+    
+    allSlides.forEach(slide => {
+        const bgImages = slide.querySelectorAll('.choose__slide-bg');
+        const mainImage = slide.querySelector('.choose__slide-image > img:not(.choose__slide-bg)');
+        const allElements = [...bgImages, mainImage];
+
+        allElements.forEach(img => {
+            // Создаем и СРАЗУ запускаем анимацию
+            gsap.to(img, {
+                yPercent: gsap.utils.random(-5, -10),
+                xPercent: gsap.utils.random(-2, 2),
+                rotation: () => {
+                    // Берем текущий rotate из inline-стилей или атрибутов, если GSAP его уже знает
+                    // или просто добавляем к текущему значению
+                    return "+=" + gsap.utils.random(-3, 3);
                 },
-            }
+                duration: gsap.utils.random(2, 4),
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
         });
-    }
+    });
+}
     if (document.querySelector(".sliderProd__slider")) {
         new Swiper(".sliderProd__slider", {
             loop: false,

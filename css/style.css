@@ -838,16 +838,24 @@ main.main{
 .choose__slide.swiper-slide-active ~ .swiper-slide{
     opacity: 1;
 }
-.choose__slide-bg{
+.choose__slide-bg {
     display: flex;
     align-items: center;
     position: absolute;
-    transition: all .3s ease;
+    /* transition: all .3s ease; <--- Удалите или замените на только opacity */
+    transition: opacity .3s ease; 
     height: auto;
     pointer-events: none;
+    will-change: transform; /* Оптимизация для плавности */
 }
-.choose__slide-image > img{
-    transition: all .3s ease;
+.choose__slide-image > img {                
+    /* transition: all .3s ease; <--- УДАЛИТЬ */
+    transition: transform .3s ease, filter .3s ease; /* Оставить только нужные */
+}
+.choose__slide-bg {                
+    /* transition: all .3s ease; <--- УДАЛИТЬ */
+    transition: opacity .3s ease; /* Оставить только opacity */
+    will-change: transform; /* Добавить для плавности */
 }
 .choose__slide-image:hover > img:last-of-type{
     transform: rotate(-10deg);
