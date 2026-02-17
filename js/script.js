@@ -333,29 +333,23 @@ document.addEventListener('DOMContentLoaded', () => {
         autoplay: { 
             delay: 2500, 
             disableOnInteraction: false,
-            pauseOnMouseEnter: true // Это штатная настройка Swiper для остановки при наведении
+            pauseOnMouseEnter: true
         },
         breakpoints: {
             768: { spaceBetween: 250 },
         }
     });
 
-    // Запускаем анимацию для ВСЕХ слайдов сразу
     const allSlides = document.querySelectorAll('.choose__slide');
-    
     allSlides.forEach(slide => {
         const bgImages = slide.querySelectorAll('.choose__slide-bg');
         const mainImage = slide.querySelector('.choose__slide-image > img:not(.choose__slide-bg)');
         const allElements = [...bgImages, mainImage];
-
         allElements.forEach(img => {
-            // Создаем и СРАЗУ запускаем анимацию
             gsap.to(img, {
                 yPercent: gsap.utils.random(-5, -10),
                 xPercent: gsap.utils.random(-2, 2),
                 rotation: () => {
-                    // Берем текущий rotate из inline-стилей или атрибутов, если GSAP его уже знает
-                    // или просто добавляем к текущему значению
                     return "+=" + gsap.utils.random(-3, 3);
                 },
                 duration: gsap.utils.random(2, 4),
@@ -875,3 +869,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+if (document.querySelector(".prodblock__slider")) {
+    document.querySelectorAll('.prodblock__slider').forEach((sliderEl) => {
+        const isInsideBox = sliderEl.closest('.prodblock__box');
+        
+        const swiper = new Swiper(sliderEl, {
+            loop: false,
+            spaceBetween: 40,
+            slidesPerView: 1.3,
+            centeredSlides: true,
+            speed: 800,
+            pagination: {
+                el: sliderEl.parentElement.querySelector('.prodblock__slider-pagination'),
+                clickable: true
+            },
+            breakpoints: {
+                768: { 
+                    slidesPerView: isInsideBox ? 1 : 4, 
+                    spaceBetween: isInsideBox ? 20 : 40, 
+                    centeredSlides: isInsideBox ? true : false, 
+                },
+                1024: { 
+                    slidesPerView: isInsideBox ? 1 : 4, 
+                    spaceBetween: isInsideBox ? 20 : 96, 
+                    centeredSlides: isInsideBox ? true : false, 
+                },
+            }
+        });
+    });
+}
+function initSliderAnimation(slideSelector, bgSelector, imageSelector) {
+    document.querySelectorAll(slideSelector).forEach((slide) => {
+        const bgElements = bgSelector ? slide.querySelectorAll(bgSelector) : [];
+        const imageElement = imageSelector ? slide.querySelector(imageSelector) : null;
+        let animationTimelines = [];
+        
+        slide.addEventListener('mouseenter', () => {
+            animationTimelines.forEach(tl => tl.kill());
+            animationTimelines = [];
+
+            bgElements.forEach((el, index) => {
+                const duration = gsap.utils.random(3, 5);
+                const distance = gsap.utils.random(15, 30);
+                
+                const tl = gsap.to(el, {
+                    y: distance,
+                    duration: duration,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                    delay: index * 0.2
+                });
+                animationTimelines.push(tl);
+            });
+            
+            if (imageElement) {
+                const duration = gsap.utils.random(3, 5);
+                const distance = gsap.utils.random(15, 25);
+                
+                const tl = gsap.to(imageElement, {
+                    y: distance,
+                    duration: duration,
+                    ease: "sine.inOut",
+                    repeat: -1,
+                    yoyo: true
+                });
+                animationTimelines.push(tl);
+            }
+        });
+        
+        slide.addEventListener('mouseleave', () => {
+            animationTimelines.forEach(tl => tl.kill());
+            animationTimelines = [];
+            const elementsToReset = [imageElement, ...bgElements].filter(el => el);
+            if (elementsToReset.length > 0) {
+                gsap.to(elementsToReset, {
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            }
+        });
+    });
+}
+
+initSliderAnimation('.prodblock__slide', '.prodblock__slide-bg', '.prodblock__slide-image');
