@@ -160,7 +160,7 @@ button{
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M16.0392 10.9999L10.6752 5.63592L12.0892 4.22192L19.8672 11.9999L12.0892 19.7779L10.6752 18.3639L16.0392 12.9999H3.86719V10.9999H16.0392Z' fill='%231D1D1D'/%3E%3C/svg%3E");
 }
 .btn-3:hover{
-    background-color: #D6001C;
+    background-color: #C1032E;
     color: #fff;
 }
 .btn-3.btn-icon:hover::after{
@@ -189,7 +189,7 @@ textarea{
     height: 7.813vw;
 }
 mark{
-    color: #D6001C;
+    color: #C1032E;
 }
 main.main{
     overflow: hidden;
@@ -215,9 +215,6 @@ main.main{
     left: 0;
     right: 0;
 }
-.header-main .header__logo{
-    max-width: 11.458vw;
-}
 .header__inner{
     display: flex;
     align-items: center;
@@ -228,7 +225,7 @@ main.main{
 }
 .header__logo{
     width: 100%;
-    max-width: 6.979vw;
+    max-width: 11.458vw;
     position: absolute;
     top: 2.448vw;
     left: 50%;
@@ -313,7 +310,7 @@ main.main{
     transform: rotate(180deg);
 }
 .header__lang-select:hover{
-    color: #D6001C;
+    color: #C1032E;
 }
 .header__btn{
     font-size: 0.833vw;
@@ -492,7 +489,7 @@ main.main{
     width: 14.01vw;
 }
 .hero__banner{
-    background-color: #D6001C;
+    background-color: #C1032E;
     position: absolute;
     z-index: 10;
     left: -0.521vw;
@@ -677,7 +674,7 @@ main.main{
     gap: 2.083vw;
 }
 .advantages__info-title:nth-of-type(2n){
-    color: #D6001C;
+    color: #C1032E;
 }
 .advantages__info-icon{
     display: flex;
@@ -758,7 +755,7 @@ main.main{
 .choose{
     margin-top: 8.854vw;
     overflow: hidden;
-    background: #D6001C;
+    background: #C1032E;
 }
 .choose__inner{
     display: flex;
@@ -1426,9 +1423,6 @@ main.main{
         padding: 15px 0;
         gap: 15px;
     }
-    .header-main .header__logo{
-        max-width: 130px;
-    }
     .header__logo {
         position: initial;
         transform: none;
@@ -2004,7 +1998,7 @@ main.main{
     line-height: 100%; /* 2.381vw */
 }
 .header__content-menu ul li a:hover{
-    color: #D6001C;
+    color: #C1032E;
 }
 .header__content .header__start{
     position: absolute;
@@ -2040,13 +2034,13 @@ main.main{
     align-items: center;
     border-radius: 50%;
     min-width: 4.167vw;
-    border: 0.119vw solid #D6001C;
+    border: 0.119vw solid #C1032E;
 }
 .header__start-socials a svg{
     transition: all .2s ease;
 }
 .header__start-socials a:hover{
-    background-color: #D6001C;
+    background-color: #C1032E;
 }
 .header__start-socials a:hover svg path[fill]{
     fill: #FFF;
@@ -2120,7 +2114,7 @@ main.main{
         height: 40px;
         padding: 4px;
         min-width: 40px;
-        border: 1px solid #D6001C;
+        border: 1px solid #C1032E;
     }
     .header__content-image {
         position: initial;
@@ -2276,13 +2270,13 @@ main.main{
     transition: all .1s ease;
 }
 .contact__info-descr:hover{
-    color: #D6001C;
+    color: #C1032E;
 }
 .contact__info-descr:hover svg path[fill]{
-    fill: #D6001C;
+    fill: #C1032E;
 }
 .contact__info-descr:hover svg path[stroke]{
-    stroke: #D6001C;
+    stroke: #C1032E;
 }
 .contact__info-descr:hover::after{
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50' fill='none'%3E%3Cpath d='M11.8741 38.1257L38.1255 11.8743M38.1255 11.8743V31.5628M38.1255 11.8743H18.437' stroke='%23D6001C' stroke-width='2' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -2547,7 +2541,7 @@ main.main{
 .whystart__item{
     padding: 2.083vw;
     border-radius: 1.563vw;
-    background: #D6001C;
+    background: #C1032E;
     display: flex;
     flex-direction: column;
     gap: 0.781vw;
@@ -2806,7 +2800,7 @@ main.main{
     .whystart__item {
         padding: 30px;
         border-radius: 20px;
-        background: #D6001C;
+        background: #C1032E;
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -3091,6 +3085,7 @@ main.main{
 .product__info-inner{
     display: flex;
     align-items: start;
+    min-height: 46vw;
     width: 100%;
     padding: 5.99vw 0;
     justify-content: space-between;
@@ -3189,7 +3184,7 @@ main.main{
 
 /* sliderProd */
 .sliderProd{
-    background-color: #D6001C;
+    background-color: #C1032E;
     padding: 7.031vw 0;
 }
 .sliderProd__title{
@@ -3225,7 +3220,7 @@ main.main{
 /* infoblock */
 .infoblock{
     padding: 5.208vw 0;
-    background-color: #D6001C;
+    background-color: #C1032E;
 }
 .infoblock__block{
     display: flex;
@@ -3322,7 +3317,7 @@ main.main{
     width: 3.125vw;
 }
 .swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal .swiper-pagination-bullet.swiper-pagination-bullet-active{
-    background: #D6001C;
+    background: #C1032E;
 }
 
 
@@ -3401,7 +3396,7 @@ main.main{
 }
 .faq__item.is-active .faq__item-title,
 .faq__item-title:hover{
-    color: #D6001C;
+    color: #C1032E;
 }
 .faq__item.is-active .faq__item-title::after{
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' fill='none'%3E%3Cpath d='M5 18H35V22H5V18Z' fill='%23D6001C'/%3E%3C/svg%3E");
@@ -3411,7 +3406,7 @@ main.main{
 /* steps */
 .steps{
     padding-top: 7.813vw;
-    background: #D6001C;
+    background: #C1032E;
 }
 .steps__title{
     text-align: center;
@@ -3595,7 +3590,7 @@ main.main{
 /* prodblock */
 .prodblock{
     padding: 5.781vw 0 5.208vw;
-    background: #D6001C;
+    background: #C1032E;
 }
 .prodblock-bg{
     background: #4B1D3F;
@@ -4209,6 +4204,7 @@ main.main{
         width: 68px;
     }
     .product__info-inner{
+        min-height: auto;
         padding: 60px 0 100px;
         flex-direction: column;
     }
